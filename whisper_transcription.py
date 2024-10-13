@@ -12,7 +12,8 @@ model = whisper.load_model("turbo")
 
 # 音声ファイルを処理して結果を取得
 # verboseで進行状況を表示、trueにするとめちゃくちゃ出てくる
-result = model.transcribe(fp, verbose=False)
+# 日本語固定したい時はlanguage="Japanese"を追加
+result = model.transcribe(fp, language="Japanese", verbose=False)
 
 # Markdown形式で書き込む
 # ここで書き込み先を絶対パスで指定しちゃってるけど、なんかもっと賢い方法はあるっぽい
