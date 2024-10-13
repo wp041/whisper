@@ -3,9 +3,10 @@ import whisper
 
 # ファイルパスを定義
 # fp = "C:/Users/okiko/Downloads/recording.mp3"
-fp = input('ファイルパスを定義してください： ').strip('"').strip("'")
-# ファイル名を取得
+fp = input('ファイルパスを定義してください（D&D可）： ').strip('"').strip("'")
+# 後にエクスポートファイルに使うため、ファイル名（拡張子なし）、ファイルパスを取得
 fn = os.path.splitext(os.path.basename(fp))[0]
+dp = os.path.dirname(fp)
 
 # Whisperモデルをロード
 model = whisper.load_model("turbo")
@@ -16,10 +17,10 @@ model = whisper.load_model("turbo")
 result = model.transcribe(fp, language="Japanese", verbose=False)
 
 # Markdown形式での出力先
-md_path = "C:/Users/okiko/Downloads/" + fn + ".md"
+md_path = dp  +"/"+ fn + ".md"
 
 # SRT形式での出力先
-srt_path = "C:/Users/okiko/Downloads/" + fn + ".srt"
+srt_path = dp +"/"+ fn + ".srt"
 
 # Markdownファイルを書き込み
 with open(md_path, mode="w", encoding="utf-8") as md_file,open(srt_path, mode="w", encoding="utf-8") as srt_file:
