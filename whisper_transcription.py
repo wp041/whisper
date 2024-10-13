@@ -11,7 +11,8 @@ fn = os.path.splitext(os.path.basename(fp))[0]
 model = whisper.load_model("turbo")
 
 # 音声ファイルを処理して結果を取得
-result = model.transcribe(fp)
+# verboseで進行状況を表示、trueにするとめちゃくちゃ出てくる
+result = model.transcribe(fp, verbose=False)
 
 # Markdown形式で書き込む
 # ここで書き込み先を絶対パスで指定しちゃってるけど、なんかもっと賢い方法はあるっぽい
@@ -33,7 +34,7 @@ with open("C:/Users/okiko/Downloads/" + fn + ".md", mode="w", encoding="utf-8") 
         end_time_str = f"{end_minutes:02}:{end_seconds:02}"
 
         text = segment["text"].strip()  # 前後の空白を削除
-        file.write(f"{start_time_str}  {text}\n")
+        file.write("- " f"{start_time_str}  {text}\n")
 
         # 処理が終わったセグメントを表示
         # print(f"processed:{start_time_str}  {text}")
