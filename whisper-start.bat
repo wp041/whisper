@@ -10,5 +10,5 @@ python whisper_transcription.py
 
 
 REM 実行が完了した後にウィンドウを保持する（任意）
-echo message: done enter to escape
-pause
+REM echo message: done enter to escape
+REM pause
